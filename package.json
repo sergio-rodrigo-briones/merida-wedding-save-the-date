@@ -13,6 +13,8 @@
     "start": "npm run start -w apps/web",
     "build": "npm run build -w apps/web",
     "test": "npm run test -w apps/web",
+    "lint": "npm run lint -w apps/web",
+    "lint:fix": "npm run lint -w apps/web -- --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
