@@ -1,6 +1,7 @@
-<main>
-  <h1>{{ t.saveTheDate.headline }}</h1>
-  <p>{{ names }}</p>
-  <p>{{ wedding.city[lang] }}</p>
-</main>
+<nav class="language" [attr.aria-label]="t().language.label">
+  <!-- lang: screen readers pronounce "English" in English; hreflang: target language. -->
+  <a [routerLink]="otherHome()" [attr.lang]="language.other()" [attr.hreflang]="language.other()">{{
+    t().language.switchTo
+  }}</a>
+</nav>
 <router-outlet />
