@@ -11,7 +11,9 @@
   ],
   "scripts": {
     "start": "npm run start -w apps/web",
+    "start:real": "npm run start:real -w apps/web",
     "build": "npm run build -w apps/web",
+    "build:real": "npm run build:real -w apps/web",
     "test": "npm run test -w apps/web",
     "lint": "npm run lint -w apps/web",
     "lint:fix": "npm run lint -w apps/web -- --fix",

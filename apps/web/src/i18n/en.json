@@ -1,0 +1,24 @@
+{
+  "saveTheDate": {
+    "headline": "Save the date",
+    "announcement": "We're getting married!",
+    "note": "Formal invitation to follow"
+  },
+  "countdown": {
+    "label": "Coming up in",
+    "days": "days",
+    "hours": "hours",
+    "minutes": "minutes",
+    "seconds": "seconds"
+  },
+  "calendar": {
+    "add": "Add to calendar"
+  },
+  "language": {
+    "label": "Language",
+    "switchTo": "Español"
+  },
+  "a11y": {
+    "skipAnimation": "Skip animation"
+  }
+}

@@ -54,6 +54,15 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "real": {
+              "outputPath": "dist/web-real",
+              "fileReplacements": [
+                {
+                  "replace": "src/content/wedding.example.ts",
+                  "with": "src/content/wedding.local.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -66,6 +75,9 @@
             },
             "development": {
               "buildTarget": "web:build:development"
+            },
+            "real": {
+              "buildTarget": "web:build:development,real"
             }
           },
           "defaultConfiguration": "development"
