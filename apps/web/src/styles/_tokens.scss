@@ -1,0 +1,61 @@
+// Design tokens as CSS custom properties: GSAP can animate them, they work
+// inside inline SVG and they are visible in DevTools.
+//
+// Two layers:
+//   1. Primitives — the palette, named after Mérida (façades, flowers, cenotes).
+//      Components never use these directly.
+//   2. Semantic   — the role a color plays. Components only use these, so a
+//      section can switch walls by changing one line.
+//
+// Contrast (WCAG 2.2, checked against every wall and cotton):
+//   - ink and accent pass AA for text (>= 4.5:1).
+//   - Thread colors are decorative only (1.3–2.7:1): never use them for text,
+//     borders, focus rings or anything a user must perceive.
+
+:root {
+  // 1. Primitives ------------------------------------------------------------
+
+  // Walls: façades of Santiago and Santa Ana
+  --menta: #d4ebdd;
+  --rosa: #f7d5da;
+  --limon: #f6e7a8;
+  --celeste: #cde9e7;
+
+  // Fabric
+  --algodon: #fbf8f1;
+
+  // Threads (decorative only)
+  --hoja: #6faf84;
+  --bugambilia: #e07a9b;
+  --maiz: #e9be4f;
+  --cenote: #4fa9a6;
+  --flamboyan: #ee9473;
+
+  // Text
+  --tinta: #263a2e;
+  --bugambilia-oscuro: #b52a57; // AA on every wall (>= 4.51:1)
+
+  // 2. Semantic --------------------------------------------------------------
+
+  --color-wall: var(--menta);
+  --color-fabric: var(--algodon);
+  --color-text: var(--tinta);
+
+  --color-accent: var(--bugambilia-oscuro);
+  --color-accent-hover: color-mix(in oklab, var(--bugambilia-oscuro) 80%, black);
+  --color-on-accent: var(--algodon);
+  --color-focus-ring: var(--bugambilia-oscuro);
+
+  --color-thread-1: var(--hoja);
+  --color-thread-2: var(--bugambilia);
+  --color-thread-3: var(--maiz);
+  --color-thread-4: var(--cenote);
+  --color-thread-5: var(--flamboyan);
+
+  // Typography (files are self-hosted, see _fonts.scss)
+  --font-display: 'Gloock', Georgia, 'Times New Roman', serif;
+  --font-body: 'Work Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  // A fixed, light palette: tell the browser not to apply dark-mode defaults.
+  color-scheme: light;
+}
