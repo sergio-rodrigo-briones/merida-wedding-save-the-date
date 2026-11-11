@@ -19,7 +19,8 @@ Yucatecan cement tiles (_mosaicos de pasta_).
 - [ ] 7. Date, countdown (America/Merida) and `.ics` download
 - [ ] 8. Parallax photos (AVIF/WebP)
 - [ ] 9. Hem, reduced motion and accessibility
-- [ ] 10. CI and GitHub Pages demo
+- [x] CI: format, lint, test and build on every pull request
+- [ ] 10. GitHub Pages demo
 - [ ] 11. Open Graph, final README and demo GIF
 - [ ] 12. Production deploy on Cloudflare Pages with a custom domain
 
