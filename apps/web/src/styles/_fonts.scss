@@ -1,0 +1,10 @@
+// Self-hosted fonts from Fontsource (OFL-1.1). Served from our own domain:
+// no request to Google, no third-party cookies, and versions pinned by npm.
+// Both use font-display: swap, so text renders immediately in the fallback.
+
+// Gloock: display serif, only weight 400 exists. Latin covers es and en.
+@use '@fontsource/gloock/latin-400';
+
+// Work Sans: one variable file for every weight (100–900). Each subset has its
+// own unicode-range, so browsers download only the latin file for our texts.
+@use '@fontsource-variable/work-sans/wght';
