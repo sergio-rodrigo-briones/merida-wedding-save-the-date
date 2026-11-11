@@ -1,0 +1,15 @@
+.language {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+
+  a {
+    color: var(--color-accent);
+    font-weight: 500;
+    text-underline-offset: 0.2em;
+
+    &:hover {
+      color: var(--color-accent-hover);
+    }
+  }
+}
