@@ -17,6 +17,7 @@ import { format } from '../../../i18n/i18n';
 import { Language } from '../../../i18n/language';
 import { Envelope } from '../envelope/envelope';
 import { InvitationCard } from './card/invitation-card';
+import { Story } from './story/story';
 
 /**
  * closed → opening (envelope timeline) → stitching (card timeline) → done.
@@ -30,7 +31,7 @@ function prefersReducedMotion(): boolean {
 
 @Component({
   selector: 'app-save-the-date',
-  imports: [Envelope, InvitationCard],
+  imports: [Envelope, InvitationCard, Story],
   templateUrl: './save-the-date.html',
   styleUrl: './save-the-date.scss',
 })
@@ -91,6 +92,13 @@ export class SaveTheDate {
       .call(() => this.introShown.set(false), [], 1.85)
       .call(() => this.stage.set('stitching'), [], 1.9)
       .add(card.sew(), 1.9);
+  }
+
+  protected toStory(): void {
+    document.getElementById('story')?.scrollIntoView({
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+      block: 'start',
+    });
   }
 
   protected skip(): void {

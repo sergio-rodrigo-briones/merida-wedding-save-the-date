@@ -21,6 +21,13 @@
     "ics": "Apple u Outlook (.ics)",
     "eventTitle": "Boda de {names}"
   },
+  "story": {
+    "cue": "Nuestra historia",
+    "title": "Nuestra historia",
+    "subtitle": "Un hilo que empezó en {from} y que vamos a atar en {to}.",
+    "route": "Un hilo que va de {from} a {to}",
+    "closing": "Nos vemos en {to}"
+  },
   "language": {
     "label": "Idioma",
     "switchTo": "English"

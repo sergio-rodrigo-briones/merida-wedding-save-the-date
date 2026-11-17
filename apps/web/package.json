@@ -5,9 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:real": "ng serve --configuration real",
+    "start:real": "npm run photos:real && ng serve --configuration real",
     "build": "ng build",
-    "build:real": "ng build --configuration production,real",
+    "build:real": "npm run photos:real && ng build --configuration production,real",
+    "photos:demo": "node scripts/photos.mjs demo",
+    "photos:real": "node scripts/photos.mjs real",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
@@ -38,6 +40,7 @@
     "eslint": "^10.12.0",
     "eslint-config-prettier": "^10.1.8",
     "jsdom": "^30.0.0",
+    "sharp": "0.35.5",
     "typescript": "~6.0.2",
     "typescript-eslint": "8.71.0",
     "vitest": "^5.0.0"

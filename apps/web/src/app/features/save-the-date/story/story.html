@@ -1,0 +1,70 @@
+<section class="story" id="story" aria-labelledby="story-title">
+  <header class="heading">
+    <p class="eyebrow">{{ story().from.name }}</p>
+    <h2 id="story-title">{{ t().story.title }}</h2>
+    <p class="subtitle">{{ subtitle() }}</p>
+  </header>
+
+  <ol class="photos">
+    @for (photo of story().photos; track photo.file; let i = $index) {
+      <li class="photo" [class.wide]="isWide(photo)">
+        @for (corner of corners; track corner) {
+          <app-embroidery [class]="'cross ' + corner" [chart]="cornerChart(i)" />
+        }
+        <figure>
+          <div class="frame">
+            <picture>
+              <source
+                type="image/avif"
+                [attr.srcset]="srcset(photo, 'avif')"
+                [attr.sizes]="sizes(photo)"
+              />
+              <source
+                type="image/webp"
+                [attr.srcset]="srcset(photo, 'webp')"
+                [attr.sizes]="sizes(photo)"
+              />
+              <img
+                [src]="photoUrl(photo, 800, 'webp')"
+                [attr.width]="photo.width"
+                [attr.height]="photo.height"
+                [alt]="photo.alt[lang()]"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+          <figcaption>
+            <b>{{ photo.title[lang()] }}</b>
+            <span>{{ photo.place[lang()] }}</span>
+          </figcaption>
+        </figure>
+      </li>
+    }
+  </ol>
+
+  <figure class="route">
+    <svg viewBox="0 0 400 230" role="img" [attr.aria-label]="routeLabel()">
+      <path class="ghost" d="M345 55 C 255 5, 160 35, 120 105 S 60 190, 58 192" />
+      <path
+        #route
+        class="thread"
+        pathLength="1"
+        d="M345 55 C 255 5, 160 35, 120 105 S 60 190, 58 192"
+      />
+      <circle class="from" cx="345" cy="55" r="6" />
+      <circle class="to" cx="58" cy="192" r="6" />
+      <circle #needle class="needle" cx="58" cy="192" r="4.5" />
+      <text x="340" y="88" text-anchor="end">{{ story().from.name }}</text>
+      <text class="region" x="340" y="104" text-anchor="end">{{ story().from.region }}</text>
+      <text x="78" y="190">{{ story().to.name }}</text>
+      <text class="region" x="78" y="206">{{ story().to.region }}</text>
+    </svg>
+  </figure>
+</section>
+
+<section class="closing" aria-labelledby="closing-title">
+  <h2 id="closing-title">{{ closing() }}</h2>
+  <p class="note">{{ t().saveTheDate.note }}</p>
+  <app-embroidery #hemStitches class="hem" [chart]="hem" />
+</section>

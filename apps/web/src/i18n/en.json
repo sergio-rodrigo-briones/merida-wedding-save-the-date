@@ -21,6 +21,13 @@
     "ics": "Apple or Outlook (.ics)",
     "eventTitle": "Wedding of {names}"
   },
+  "story": {
+    "cue": "Our story",
+    "title": "Our story",
+    "subtitle": "A thread that began in {from} and that we will tie in {to}.",
+    "route": "A thread running from {from} to {to}",
+    "closing": "See you in {to}"
+  },
   "language": {
     "label": "Language",
     "switchTo": "Español"

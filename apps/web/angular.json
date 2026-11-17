@@ -57,6 +57,18 @@
             },
             "real": {
               "outputPath": "dist/web-real",
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "public",
+                  "ignore": ["photos/**"]
+                },
+                {
+                  "glob": "**/*",
+                  "input": "private/photos/web",
+                  "output": "photos"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/content/wedding.example.ts",

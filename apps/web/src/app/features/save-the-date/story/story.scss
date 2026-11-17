@@ -1,0 +1,238 @@
+:host {
+  display: grid;
+  justify-items: center;
+  width: min(100%, 520px);
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(1.9rem, 8vw, 2.4rem);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+.story {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  width: 100%;
+  padding-block: 40px 0;
+  text-align: center;
+}
+
+.heading {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 26px;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.subtitle {
+  max-width: 34ch;
+  color: var(--color-text-muted);
+}
+
+// One running thread down the page, behind the photos it "sews" together.
+.photos {
+  position: relative;
+  display: grid;
+  gap: 56px;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 56px;
+  list-style: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -24px;
+    bottom: 0;
+    left: 50%;
+    width: 3px;
+    translate: -50% 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--color-thread-2) 0 9px,
+      transparent 9px 16px
+    );
+  }
+}
+
+.photo {
+  position: relative;
+  justify-self: center;
+  width: min(88%, 380px);
+  rotate: -1.5deg;
+
+  &:nth-child(even) {
+    rotate: 1.3deg;
+  }
+
+  &.wide {
+    width: min(96%, 480px);
+  }
+}
+
+figure {
+  margin: 0;
+}
+
+.photo figure {
+  padding: 10px 10px 12px;
+  background: var(--color-fabric);
+  box-shadow: 0 16px 30px -20px var(--color-shadow);
+}
+
+// The image is taller than its frame so the parallax never shows an edge.
+.frame {
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--color-envelope-fold);
+
+  .wide & {
+    aspect-ratio: 3 / 2;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 116%;
+    margin-top: -8%;
+    object-fit: cover;
+  }
+}
+
+figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 9px;
+  font-size: 0.85rem;
+  text-align: left;
+  color: var(--color-text-muted);
+
+  b {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+}
+
+// A single cross-stitch pins each corner of the photo to the page.
+.cross {
+  position: absolute;
+  z-index: 1;
+  width: 16px;
+
+  &.tl {
+    top: -6px;
+    left: -6px;
+  }
+
+  &.tr {
+    top: -6px;
+    right: -6px;
+  }
+
+  &.bl {
+    bottom: -6px;
+    left: -6px;
+  }
+
+  &.br {
+    bottom: -6px;
+    right: -6px;
+  }
+}
+
+.route {
+  width: 100%;
+  padding: 18px 14px 10px;
+  border-radius: 3px;
+  background: var(--color-fabric);
+  box-shadow: 0 16px 30px -22px var(--color-shadow);
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  path {
+    fill: none;
+  }
+
+  .ghost {
+    stroke: var(--color-envelope-fold);
+    stroke-width: 2;
+    stroke-dasharray: 2 6;
+  }
+
+  // pathLength="1": a dash of 1 and an offset of 0 show the whole thread; GSAP sews it from 1.
+  .thread {
+    stroke: var(--color-thread-2);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+
+  .from {
+    fill: var(--color-thread-2);
+  }
+
+  .to {
+    fill: var(--color-thread-4);
+  }
+
+  .needle {
+    fill: var(--color-text);
+  }
+
+  text {
+    font-family: var(--font-display);
+    font-size: 17px;
+    fill: var(--color-text);
+  }
+
+  .region {
+    font-family: var(--font-body);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    fill: var(--color-text-muted);
+  }
+}
+
+.closing {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-block: 48px 16px;
+  padding: 26px clamp(18px, 6vw, 40px) 22px;
+  border-radius: 3px;
+  text-align: center;
+  background: var(--color-fabric);
+  box-shadow: 0 22px 48px -26px var(--color-shadow);
+}
+
+.note {
+  color: var(--color-text-muted);
+}
+
+.hem {
+  width: 100%;
+  margin-top: 12px;
+}

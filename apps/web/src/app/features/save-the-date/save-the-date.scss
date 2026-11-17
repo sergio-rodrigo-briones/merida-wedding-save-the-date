@@ -87,8 +87,61 @@ main {
   }
 }
 
+// "Our story" appears once the card is sewn; its thread keeps sewing downwards.
+.cue {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  margin-top: 26px;
+  padding: 6px 12px;
+  border: 0;
+  background: none;
+  color: var(--color-text);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+
+  &.ready {
+    opacity: 1;
+  }
+
+  svg {
+    width: 14px;
+    height: 40px;
+  }
+}
+
+.cue-thread {
+  stroke: var(--color-thread-2);
+  stroke-width: 2.5;
+  stroke-dasharray: 5 5;
+  stroke-linecap: round;
+  animation: sew 1.4s linear infinite;
+}
+
+.cue-arrow {
+  fill: none;
+  stroke: var(--color-text);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes sew {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .opened {
+  .opened,
+  .cue {
     transition: none;
+  }
+
+  .cue-thread {
+    animation: none;
   }
 }

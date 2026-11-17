@@ -25,6 +25,21 @@
         [timeZone]="wedding.timeZone"
         [city]="city()"
       />
+      <!-- Scrolling stays the guest's choice: the cue only offers it. -->
+      <button
+        type="button"
+        class="cue"
+        [class.ready]="stage() === 'done'"
+        aria-controls="story"
+        (click)="toStory()"
+      >
+        {{ t().story.cue }}
+        <svg viewBox="0 0 14 40" aria-hidden="true">
+          <line class="cue-thread" x1="7" y1="0" x2="7" y2="30" />
+          <path class="cue-arrow" d="M2 30 L7 37 L12 30" />
+        </svg>
+      </button>
+      <app-story [story]="wedding.story" />
     </div>
   }
 </main>

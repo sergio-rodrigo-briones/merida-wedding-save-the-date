@@ -15,9 +15,9 @@ Yucatecan cement tiles (_mosaicos de pasta_).
 - [x] 3. Embroidery generator (pure functions: charts → ordered stitches)
 - [x] 4. Embroidery component and GSAP animation
 - [x] 5. Envelope and 3D opening
-- [ ] 6. Scroll-driven journey with MotionPath
+- [x] 6. Scroll-driven journey with MotionPath
 - [x] 7. Date, countdown (America/Merida) and `.ics` download
-- [ ] 8. Parallax photos (AVIF/WebP)
+- [x] 8. Parallax photos (AVIF/WebP)
 - [ ] 9. Hem, reduced motion and accessibility
 - [x] CI: format, lint, test and build on every pull request
 - [ ] 10. GitHub Pages demo
@@ -28,7 +28,10 @@ Yucatecan cement tiles (_mosaicos de pasta_).
 
 - [Angular 22](https://angular.dev): zoneless, standalone components, static prerendering
   (no server at runtime)
-- SVG for the embroidery, animated with [GSAP](https://gsap.com) (coming in milestone 4)
+- SVG for the embroidery, animated with [GSAP](https://gsap.com) (timelines, ScrollTrigger,
+  MotionPath)
+- Photos prepared with [sharp](https://sharp.pixelplumbing.com): AVIF and WebP at three
+  widths, metadata stripped
 - SCSS with design tokens as CSS custom properties
 - [Vitest](https://vitest.dev) for unit tests
 - ESLint ([angular-eslint](https://github.com/angular-eslint/angular-eslint)) and
@@ -53,6 +56,11 @@ npm run build   # static build in apps/web/dist/web
 The public repo and demo use a fictional couple, **Itzel & Jordi**, with sample data.
 The real wedding details live in a `wedding.local.ts` file that is ignored by git. The
 production build reads that file, so personal data never reaches the repository.
+
+Photos follow the same rule. The demo uses generated placeholders (`npm run photos:demo`).
+The real photos stay in `apps/web/private/` (ignored by git); `npm run build:real` converts
+them with `scripts/photos.mjs`, which strips every piece of metadata, including any GPS
+location saved by the camera.
 
 ## License
 
