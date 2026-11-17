@@ -1,0 +1,33 @@
+// Sizes are in SVG units (one cell = 10), so they scale with the embroidery.
+:host {
+  display: block;
+}
+
+svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.guide {
+  opacity: 0.14;
+}
+
+.stitches line {
+  stroke-linecap: round;
+  // pathLength="1" makes every leg 1 unit long, so 1 / 0 hide / show it whatever its size.
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.body {
+  stroke-width: 3;
+}
+
+// A thin light line along each leg: the shine of cotton thread.
+.sheen {
+  stroke: #fff;
+  stroke-opacity: 0.35;
+  stroke-width: 0.8;
+}

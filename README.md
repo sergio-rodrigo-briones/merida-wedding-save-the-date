@@ -13,7 +13,7 @@ Yucatecan cement tiles (_mosaicos de pasta_).
 - [x] 1. Project skeleton: monorepo, Angular app, linting and formatting
 - [x] 2. Design tokens and typed content
 - [x] 3. Embroidery generator (pure functions: charts → ordered stitches)
-- [ ] 4. Embroidery component and GSAP animation
+- [x] 4. Embroidery component and GSAP animation
 - [ ] 5. Envelope and 3D opening
 - [ ] 6. Scroll-driven journey with MotionPath
 - [ ] 7. Date, countdown (America/Merida) and `.ics` download
