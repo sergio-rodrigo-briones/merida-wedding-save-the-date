@@ -32,6 +32,11 @@ export interface Share {
   readonly siteUrl: string;
   /** Preview image (1200×630), relative to siteUrl. */
   readonly image: string;
+  /**
+   * Whether search engines may list the site. The public demo can be found;
+   * the real one is only for people who were sent the link.
+   */
+  readonly indexable: boolean;
 }
 
 /** "Our story": where the thread starts, where it is tied, and the photos along the way. */

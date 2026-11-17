@@ -36,5 +36,6 @@ export const WEDDING: WeddingContent = {
   share: {
     siteUrl: 'https://sergio-rodrigo-briones.github.io/merida-wedding-save-the-date/',
     image: 'share/og-demo.jpg',
+    indexable: true,
   },
 };
