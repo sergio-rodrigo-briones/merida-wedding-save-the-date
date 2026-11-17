@@ -1,0 +1,109 @@
+// Paper layers, back to front: back · letter · pocket (with the names) · flap · seal.
+// The pocket is a rectangle with a V cut out of its top, so the letter shows through.
+
+:host {
+  display: block;
+  width: min(100%, 420px);
+}
+
+.envelope {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  // Gives the flap its depth when it turns.
+  perspective: 1400px;
+}
+
+.back,
+.letter,
+.pocket,
+.flap {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.back {
+  inset: 0;
+  border-radius: 4px;
+  background: var(--color-envelope-fold);
+  box-shadow: 0 18px 40px -22px var(--color-shadow);
+}
+
+.letter {
+  z-index: 1;
+  left: 6%;
+  right: 6%;
+  top: 8%;
+  height: 84%;
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  padding-top: 6%;
+  border-radius: 2px;
+  background: var(--color-fabric);
+
+  app-embroidery {
+    width: 86%;
+  }
+}
+
+.pocket {
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  align-content: end;
+  justify-items: center;
+  gap: 2px;
+  padding-bottom: 9%;
+  border-radius: 4px;
+  background: var(--color-envelope);
+  clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
+}
+
+.names {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 6vw, 1.9rem);
+  line-height: 1.1;
+}
+
+.place {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.flap {
+  z-index: 3;
+  top: 0;
+  height: 58%;
+  background: var(--color-envelope-fold);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.3s ease;
+}
+
+.seal {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: 58%;
+  width: 15%;
+  translate: -50% -62%;
+  filter: drop-shadow(0 1px 1px var(--color-shadow-soft));
+}
+
+// A small lift of the flap invites the tap. GSAP's inline transform wins once it opens.
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .envelope:hover .flap {
+    transform: rotateX(16deg);
+  }
+}

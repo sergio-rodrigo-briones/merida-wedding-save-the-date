@@ -21,8 +21,10 @@
   --limon: #f6e7a8;
   --celeste: #cde9e7;
 
-  // Fabric
+  // Fabric and paper
   --algodon: #fbf8f1;
+  --papel: #f4efe3;
+  --papel-pliegue: #ece5d4;
 
   // Threads (decorative only)
   --hoja: #6faf84;
@@ -39,7 +41,13 @@
 
   --color-wall: var(--menta);
   --color-fabric: var(--algodon);
+  --color-envelope: var(--papel);
+  --color-envelope-fold: var(--papel-pliegue);
   --color-text: var(--tinta);
+  // Secondary text; still AA (>= 4.5:1) on every wall and on cotton.
+  --color-text-muted: color-mix(in oklab, var(--tinta) 82%, var(--algodon));
+  --color-shadow: rgb(38 58 46 / 55%);
+  --color-shadow-soft: rgb(38 58 46 / 22%);
 
   --color-accent: var(--bugambilia-oscuro);
   --color-accent-hover: color-mix(in oklab, var(--bugambilia-oscuro) 80%, black);

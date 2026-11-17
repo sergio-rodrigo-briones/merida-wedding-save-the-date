@@ -14,9 +14,9 @@ Yucatecan cement tiles (_mosaicos de pasta_).
 - [x] 2. Design tokens and typed content
 - [x] 3. Embroidery generator (pure functions: charts → ordered stitches)
 - [x] 4. Embroidery component and GSAP animation
-- [ ] 5. Envelope and 3D opening
+- [x] 5. Envelope and 3D opening
 - [ ] 6. Scroll-driven journey with MotionPath
-- [ ] 7. Date, countdown (America/Merida) and `.ics` download
+- [x] 7. Date, countdown (America/Merida) and `.ics` download
 - [ ] 8. Parallax photos (AVIF/WebP)
 - [ ] 9. Hem, reduced motion and accessibility
 - [x] CI: format, lint, test and build on every pull request

@@ -11,14 +11,22 @@
     "minutes": "minutes",
     "seconds": "seconds"
   },
+  "envelope": {
+    "open": "Open the envelope from {names}",
+    "hint": "Tap the envelope to open it"
+  },
   "calendar": {
-    "add": "Add to calendar"
+    "add": "Add to calendar",
+    "google": "Google Calendar",
+    "ics": "Apple or Outlook (.ics)",
+    "eventTitle": "Wedding of {names}"
   },
   "language": {
     "label": "Language",
     "switchTo": "Español"
   },
   "a11y": {
-    "skipAnimation": "Skip animation"
+    "skipAnimation": "Skip animation",
+    "replay": "Watch again"
   }
 }

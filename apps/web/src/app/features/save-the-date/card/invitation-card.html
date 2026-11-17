@@ -1,0 +1,28 @@
+<article class="card" aria-labelledby="card-names">
+  <app-embroidery class="band" [chart]="band" [guide]="true" />
+  <app-embroidery class="flower" [chart]="flower" [guide]="true" />
+
+  <p class="eyebrow">{{ t().saveTheDate.headline }}</p>
+  <p class="announcement">{{ t().saveTheDate.announcement }}</p>
+  <h1 #heading id="card-names" tabindex="-1">{{ names() }}</h1>
+
+  <app-embroidery class="date" [chart]="dateChart()" [guide]="true" />
+  <p class="date-long">
+    <time [attr.datetime]="date()">{{ dateLong() }}</time>
+  </p>
+  <p class="city">{{ city() }}</p>
+
+  <app-countdown class="countdown" [target]="start()" />
+
+  <div class="calendar">
+    <p class="calendar-title" id="calendar-title">{{ t().calendar.add }}</p>
+    <div class="calendar-links" role="group" aria-labelledby="calendar-title">
+      <a class="pill" [href]="googleUrl()" target="_blank" rel="noopener">{{
+        t().calendar.google
+      }}</a>
+      <button type="button" class="pill" (click)="downloadIcs()">{{ t().calendar.ics }}</button>
+    </div>
+  </div>
+
+  <app-embroidery class="band" [chart]="band" [guide]="true" />
+</article>

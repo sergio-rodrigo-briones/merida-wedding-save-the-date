@@ -27,7 +27,7 @@ describe('App', () => {
   it('renders Spanish at the root', async () => {
     const page = await renderAt('/');
 
-    expect(page.text('h1')).toBe('Save the date');
+    expect(page.text('h1')).toBe('Save the date · Itzel & Jordi');
     expect(page.element.textContent).toContain('Itzel & Jordi');
     expect(page.element.textContent).toContain('Mérida, Yucatán');
     expect(page.htmlLang).toBe('es');

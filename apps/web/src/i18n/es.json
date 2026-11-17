@@ -11,14 +11,22 @@
     "minutes": "minutos",
     "seconds": "segundos"
   },
+  "envelope": {
+    "open": "Abrir el sobre de {names}",
+    "hint": "Toca el sobre para abrirlo"
+  },
   "calendar": {
-    "add": "Añadir al calendario"
+    "add": "Añadir al calendario",
+    "google": "Google Calendar",
+    "ics": "Apple u Outlook (.ics)",
+    "eventTitle": "Boda de {names}"
   },
   "language": {
     "label": "Idioma",
     "switchTo": "English"
   },
   "a11y": {
-    "skipAnimation": "Saltar animación"
+    "skipAnimation": "Saltar animación",
+    "replay": "Ver de nuevo"
   }
 }

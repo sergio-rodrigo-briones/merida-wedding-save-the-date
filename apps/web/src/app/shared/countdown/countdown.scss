@@ -1,0 +1,42 @@
+:host {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
+
+.label {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+ul {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(8px, 3vw, 18px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+b {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 7vw, 2rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+span {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,10 @@
+<p class="label" id="countdown-label">{{ t().countdown.label }}</p>
+<!-- No live region: announcing every second would drown out a screen reader. -->
+<ul aria-labelledby="countdown-label">
+  @for (unit of units(); track unit.label) {
+    <li>
+      <b>{{ unit.value }}</b>
+      <span>{{ unit.label }}</span>
+    </li>
+  }
+</ul>

@@ -1,5 +1,30 @@
+<div class="controls">
+  @if (stage() === 'opening' || stage() === 'stitching') {
+    <button type="button" class="text-button" (click)="skip()">{{ t().a11y.skipAnimation }}</button>
+  } @else if (stage() === 'done') {
+    <button type="button" class="text-button" (click)="replay()">{{ t().a11y.replay }}</button>
+  }
+</div>
+
+<!-- Envelope and card share one grid cell, so one can fade in over the other. -->
 <main>
-  <h1>{{ t().saveTheDate.headline }}</h1>
-  <p>{{ names }}</p>
-  <p>{{ wedding.city[language.current()] }}</p>
+  @if (introShown()) {
+    <section #intro class="intro" aria-labelledby="intro-title">
+      <h1 id="intro-title" class="eyebrow">
+        {{ t().saveTheDate.headline }}<span class="visually-hidden"> · {{ names }}</span>
+      </h1>
+      <app-envelope [names]="names" [place]="city()" [label]="envelopeLabel()" (opened)="open()" />
+      <p class="hint">{{ t().envelope.hint }}</p>
+    </section>
+  }
+  @if (stage() !== 'closed') {
+    <div class="opened" [class.shown]="cardShown()" [attr.aria-hidden]="cardShown() ? null : true">
+      <app-invitation-card
+        [names]="names"
+        [date]="wedding.date"
+        [timeZone]="wedding.timeZone"
+        [city]="city()"
+      />
+    </div>
+  }
 </main>

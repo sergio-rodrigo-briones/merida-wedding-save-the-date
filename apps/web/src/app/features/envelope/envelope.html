@@ -1,0 +1,10 @@
+<button #button type="button" class="envelope" [attr.aria-label]="label()" (click)="opened.emit()">
+  <span class="back"></span>
+  <span #letter class="letter"><app-embroidery [chart]="peekBand" /></span>
+  <span class="pocket">
+    <span class="names">{{ names() }}</span>
+    <span class="place">{{ place() }}</span>
+  </span>
+  <span #flap class="flap"></span>
+  <app-embroidery #sealStitches class="seal" [chart]="seal" />
+</button>
