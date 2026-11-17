@@ -63,6 +63,13 @@ describe('longDate', () => {
   ])('formats the wedding day in %s', (locale, text) => {
     expect(longDate('2028-03-18', locale)).toBe(text);
   });
+
+  it('keeps the weekday in lower case inside a Spanish sentence', () => {
+    expect(longDate('2028-03-18', 'es-MX', { midSentence: true })).toBe(
+      'sábado, 18 de marzo de 2028',
+    );
+    expect(longDate('2028-03-18', 'en-US', { midSentence: true })).toBe('Saturday, March 18, 2028');
+  });
 });
 
 describe('stitchedDate', () => {

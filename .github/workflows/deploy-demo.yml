@@ -1,0 +1,69 @@
+name: Deploy demo
+
+# Publishes the public demo (sample couple, placeholder photos) to GitHub Pages.
+# The real wedding site is never built here: its data and photos are not in the repo.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# One deployment at a time; a newer push waits instead of cancelling a live one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build demo
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node from .nvmrc
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v6
+
+      # The site lives under /<repo>/, so links and assets need that base.
+      - name: Build
+        run: npm run build -w apps/web -- --base-href "${{ steps.pages.outputs.base_path }}/"
+
+      # Unknown paths load the app, whose router sends them home.
+      - name: Add 404 page
+        run: cp apps/web/dist/web/browser/index.csr.html apps/web/dist/web/browser/404.html
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: apps/web/dist/web/browser
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5

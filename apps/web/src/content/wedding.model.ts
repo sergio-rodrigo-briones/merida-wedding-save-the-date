@@ -20,6 +20,18 @@ export interface WeddingContent {
   readonly timeZone: 'America/Merida';
   readonly city: Localized<string>;
   readonly story: Story;
+  readonly share: Share;
+}
+
+/**
+ * How the link looks when it is shared (WhatsApp, Telegram, social networks).
+ * Previews need absolute URLs, so each deployment declares where it lives.
+ */
+export interface Share {
+  /** Public address of the site, ending in "/", e.g. "https://example.com/". */
+  readonly siteUrl: string;
+  /** Preview image (1200×630), relative to siteUrl. */
+  readonly image: string;
 }
 
 /** "Our story": where the thread starts, where it is tied, and the photos along the way. */

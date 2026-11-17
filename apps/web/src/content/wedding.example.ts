@@ -33,4 +33,8 @@ export const WEDDING: WeddingContent = {
     to: { name: 'Mérida', region: 'Yucatán' },
     photos: [sample(1), sample(2), sample(3), sample(4), sample(5, true)],
   },
+  share: {
+    siteUrl: 'https://sergio-rodrigo-briones.github.io/merida-wedding-save-the-date/',
+    image: 'share/og-demo.jpg',
+  },
 };

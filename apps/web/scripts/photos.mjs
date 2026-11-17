@@ -6,11 +6,15 @@
 //
 // Output names: <name>-<width>.<avif|webp>. The app builds srcset from the same widths
 // (see PHOTO_WIDTHS in src/content/photos.ts); keep both lists in sync.
+//
+// It also writes the 1200×630 link-preview image (Open Graph): a crop of the first
+// landscape photo for the real site, a generated card for the demo.
 import { mkdir, readdir, rm } from 'node:fs/promises';
 import { basename, extname, join } from 'node:path';
 import sharp from 'sharp';
 
 const WIDTHS = [480, 800, 1200];
+const OG = { width: 1200, height: 630 };
 const app = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 
 /** Writes every width and format of one image; sharp drops metadata unless asked to keep it. */
@@ -41,6 +45,22 @@ async function real() {
   const files = (await readdir(inDir)).filter((f) => /\.(jpe?g|png|tiff?|heic)$/i.test(f)).sort();
   if (files.length === 0) throw new Error(`No photos in ${inDir}`);
   for (const file of files) await export_(join(inDir, file), basename(file, extname(file)), outDir);
+
+  // Preview: the first landscape photo, cropped where sharp finds the subject.
+  let preview = files[0];
+  for (const file of files) {
+    const { width, height } = await sharp(join(inDir, file)).rotate().metadata();
+    if ((width ?? 0) > (height ?? 0)) {
+      preview = file;
+      break;
+    }
+  }
+  await sharp(join(inDir, preview))
+    .rotate()
+    .resize({ ...OG, fit: 'cover', position: sharp.strategy.attention })
+    .jpeg({ quality: 82, mozjpeg: true })
+    .toFile(join(outDir, 'og.jpg'));
+  console.log(`og.jpg: ${OG.width}×${OG.height} from ${preview}`);
 }
 
 /**
@@ -62,6 +82,48 @@ async function demo() {
       outDir,
     );
   }
+
+  const shareDir = join(app, 'public/share');
+  await mkdir(shareDir, { recursive: true });
+  await sharp(Buffer.from(previewSvg()))
+    .jpeg({ quality: 85, mozjpeg: true })
+    .toFile(join(shareDir, 'og-demo.jpg'));
+  console.log(`og-demo.jpg: ${OG.width}×${OG.height}`);
+}
+
+/** Cross-stitch "X" at a cell, as an SVG path. */
+function cross(x, y, size, color, width) {
+  return `<path d="M${x} ${y + size}L${x + size} ${y}M${x} ${y}L${x + size} ${y + size}" stroke="${color}" stroke-width="${width}" stroke-linecap="round"/>`;
+}
+
+/** The demo's link preview: a cotton card with two diamond bands, like the real card. */
+function previewSvg() {
+  const { width: w, height: h } = OG;
+  const cell = 14;
+  const cols = 60;
+  const x0 = (w - cols * cell) / 2;
+  const band = (top) => {
+    const out = [];
+    for (let c = 0; c < cols; c++) {
+      if (c % 2 === 0) out.push(cross(x0 + c * cell + 3, top, cell - 6, '#6faf84', 3));
+      if (c % 2 === 0) out.push(cross(x0 + c * cell + 3, top + cell * 8, cell - 6, '#6faf84', 3));
+      for (let r = 0; r < 7; r++) {
+        const d = Math.abs((c % 6) - 3) + Math.abs(r - 3);
+        const color = d === 3 ? '#4fa9a6' : d === 1 ? '#ee9473' : d === 0 ? '#e9be4f' : null;
+        if (color) out.push(cross(x0 + c * cell + 3, top + cell * (r + 1), cell - 6, color, 3.5));
+      }
+    }
+    return out.join('');
+  };
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+  <rect width="${w}" height="${h}" fill="#d4ebdd"/>
+  <rect x="60" y="34" width="${w - 120}" height="${h - 68}" rx="6" fill="#fbf8f1"/>
+  ${band(62)}
+  ${band(h - 62 - cell * 9)}
+  <text x="${w / 2}" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="7" fill="#4b5f52">SAVE THE DATE</text>
+  <text x="${w / 2}" y="345" text-anchor="middle" font-family="Georgia, serif" font-size="88" fill="#263a2e">Itzel &amp; Jordi</text>
+  <text x="${w / 2}" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#263a2e">18 · 03 · 2028  —  Mérida, Yucatán</text>
+</svg>`;
 }
 
 function placeholderSvg(w, h, wall, thread, n) {

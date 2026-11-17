@@ -21,6 +21,9 @@
     "ics": "Apple or Outlook (.ics)",
     "eventTitle": "Wedding of {names}"
   },
+  "share": {
+    "description": "{names} are getting married on {date} in {city}. Save the date!"
+  },
   "story": {
     "cue": "Our story",
     "title": "Our story",

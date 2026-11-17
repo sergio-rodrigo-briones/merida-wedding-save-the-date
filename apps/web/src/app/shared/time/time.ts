@@ -48,8 +48,11 @@ export function timeLeft(target: number, now: number): TimeLeft {
   };
 }
 
-/** "Sábado, 18 de marzo de 2028" / "Saturday, March 18, 2028". */
-export function longDate(isoDate: string, locale: string): string {
+/**
+ * "Sábado, 18 de marzo de 2028" / "Saturday, March 18, 2028".
+ * `{ midSentence: true }` keeps the locale's own case ("se casan el sábado, …").
+ */
+export function longDate(isoDate: string, locale: string, { midSentence = false } = {}): string {
   const { year, month, day } = parseIsoDate(isoDate);
   // Formatting in UTC keeps the calendar date as written, whatever the device's zone.
   const text = new Intl.DateTimeFormat(locale, {
@@ -59,6 +62,7 @@ export function longDate(isoDate: string, locale: string): string {
     year: 'numeric',
     timeZone: 'UTC',
   }).format(Date.UTC(year, month - 1, day));
+  if (midSentence) return text;
   return text.charAt(0).toLocaleUpperCase(locale) + text.slice(1);
 }
 

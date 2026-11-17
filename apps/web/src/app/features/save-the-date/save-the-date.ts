@@ -10,11 +10,13 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { gsap } from 'gsap';
+import { headLinks, shareTags } from '../../../content/share';
 import { WEDDING } from '../../../content/wedding.example';
-import { format } from '../../../i18n/i18n';
+import { format, LOCALES } from '../../../i18n/i18n';
 import { Language } from '../../../i18n/language';
+import { PageHead } from '../../shared/head/page-head';
+import { longDate } from '../../shared/time/time';
 import { Envelope } from '../envelope/envelope';
 import { InvitationCard } from './card/invitation-card';
 import { Story } from './story/story';
@@ -58,8 +60,21 @@ export class SaveTheDate {
   private timeline?: gsap.core.Timeline;
 
   constructor() {
-    const title = inject(Title);
-    effect(() => title.setTitle(`${this.names} · ${this.t().saveTheDate.headline}`));
+    const head = inject(PageHead);
+    effect(() => {
+      const lang = this.language.current();
+      const title = `${this.names} · ${this.t().saveTheDate.headline}`;
+      const description = format(this.t().share.description, {
+        names: this.names,
+        date: longDate(WEDDING.date, LOCALES[lang], { midSentence: true }),
+        city: this.city(),
+      });
+      head.set({
+        title,
+        tags: shareTags(WEDDING.share, { lang, title, description }),
+        links: headLinks(WEDDING.share, lang),
+      });
+    });
     inject(DestroyRef).onDestroy(() => this.timeline?.kill());
   }
 

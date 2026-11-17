@@ -21,6 +21,9 @@
     "ics": "Apple u Outlook (.ics)",
     "eventTitle": "Boda de {names}"
   },
+  "share": {
+    "description": "{names} se casan el {date} en {city}. ¡Guarda la fecha!"
+  },
   "story": {
     "cue": "Nuestra historia",
     "title": "Nuestra historia",
