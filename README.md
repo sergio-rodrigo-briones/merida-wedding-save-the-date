@@ -11,8 +11,8 @@ Yucatecan cement tiles (_mosaicos de pasta_).
 ## Roadmap (phase 1)
 
 - [x] 1. Project skeleton: monorepo, Angular app, linting and formatting
-- [ ] 2. Design tokens and typed content
-- [ ] 3. Embroidery generator (SVG stitch paths from motifs)
+- [x] 2. Design tokens and typed content
+- [x] 3. Embroidery generator (pure functions: charts → ordered stitches)
 - [ ] 4. Embroidery component and GSAP animation
 - [ ] 5. Envelope and 3D opening
 - [ ] 6. Scroll-driven journey with MotionPath
