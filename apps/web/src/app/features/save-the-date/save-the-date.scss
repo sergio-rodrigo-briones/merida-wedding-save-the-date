@@ -38,8 +38,10 @@ main {
   }
 }
 
-// The envelope sits in the middle of the first screen.
+// The envelope sits in the middle of the first screen. It shares its grid cell with the
+// (much taller) card and story while they cross-fade, so it must not stretch to that height.
 .intro {
+  align-self: start;
   min-height: calc(100svh - 4rem);
   display: grid;
   place-items: center;
