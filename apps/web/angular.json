@@ -61,7 +61,7 @@
                 {
                   "glob": "**/*",
                   "input": "public",
-                  "ignore": ["photos/**"]
+                  "ignore": ["photos/**", "share/**"]
                 },
                 {
                   "glob": "**/*",
