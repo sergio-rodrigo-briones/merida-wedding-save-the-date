@@ -61,7 +61,7 @@
                 {
                   "glob": "**/*",
                   "input": "public",
-                  "ignore": ["photos/**", "share/**"]
+                  "ignore": ["photos/**", "share/**", "sitemap.xml"]
                 },
                 {
                   "glob": "**/*",
