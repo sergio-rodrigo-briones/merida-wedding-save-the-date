@@ -1,7 +1,11 @@
 import { headLinks, pageUrl, shareTags } from './share';
 import type { Share } from './wedding.model';
 
-const share: Share = { siteUrl: 'https://example.org/save-the-date/', image: 'share/og.jpg' };
+const share: Share = {
+  siteUrl: 'https://example.org/save-the-date/',
+  image: 'share/og.jpg',
+  indexable: true,
+};
 const tag = (tags: ReturnType<typeof shareTags>, key: string) =>
   tags.find((t) => ('property' in t ? t.property : t.name) === key)?.content;
 
@@ -42,5 +46,19 @@ describe('headLinks', () => {
       { rel: 'alternate', hreflang: 'en', href: 'https://example.org/save-the-date/en/' },
       { rel: 'alternate', hreflang: 'x-default', href: 'https://example.org/save-the-date/' },
     ]);
+  });
+});
+
+describe('robots', () => {
+  const page = { lang: 'es' as const, title: 't', description: 'd' };
+
+  it('lets search engines list an indexable site', () => {
+    expect(tag(shareTags(share, page), 'robots')).toBe('index, follow');
+  });
+
+  it('keeps a private site out of search results', () => {
+    expect(tag(shareTags({ ...share, indexable: false }, page), 'robots')).toBe(
+      'noindex, nofollow',
+    );
   });
 });

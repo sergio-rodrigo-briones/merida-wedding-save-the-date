@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Every page of the public demo, with its language alternates.
+  src/content/sitemap.spec.ts checks it against the app's own URLs and hreflang links.
+  The real site has no sitemap: it is not meant to be found (see angular.json).
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://sergio-rodrigo-briones.github.io/merida-wedding-save-the-date/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sergio-rodrigo-briones.github.io/merida-wedding-save-the-date/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sergio-rodrigo-briones.github.io/merida-wedding-save-the-date/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sergio-rodrigo-briones.github.io/merida-wedding-save-the-date/" />
+  </url>
+  <url>
+    <loc>https://sergio-rodrigo-briones.github.io/merida-wedding-save-the-date/en/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sergio-rodrigo-briones.github.io/merida-wedding-save-the-date/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sergio-rodrigo-briones.github.io/merida-wedding-save-the-date/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sergio-rodrigo-briones.github.io/merida-wedding-save-the-date/" />
+  </url>
+</urlset>

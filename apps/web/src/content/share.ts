@@ -41,6 +41,8 @@ export function shareTags(
     { property: 'og:image:height', content: String(SHARE_IMAGE.height) },
     { property: 'og:image:alt', content: page.title },
     { name: 'twitter:card', content: 'summary_large_image' },
+    // Link previews still work: WhatsApp and the like fetch the page whatever robots says.
+    { name: 'robots', content: share.indexable ? 'index, follow' : 'noindex, nofollow' },
   ];
 }
 
